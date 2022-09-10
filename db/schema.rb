@@ -12,7 +12,8 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_09_10_202841) do
   create_table "accounts", force: :cascade do |t|
-    t.decimal "balance", precision: 18, scale: 2
+    t.decimal "balance", precision: 18, scale: 2, default: "0.0", null: false
+    t.boolean "is_active", default: true, null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
