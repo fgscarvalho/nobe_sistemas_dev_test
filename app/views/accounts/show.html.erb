@@ -2,9 +2,9 @@
 
 <%= render @account %>
 
-<div>
-  <%= link_to "Edit this account", edit_account_path(@account) %> |
-  <%= link_to "Back to accounts", user_accounts_path(current_user) %>
+<%= button_to "Deposit", "#" %>
+<%= button_to "Withdraw", "#" %>
+<%= button_to "Bank transfer", "#" %>
+<%= button_to "Bank statement", "#" %>
 
-  <%= button_to "Destroy this account", @account, method: :delete %>
-</div>
+<%= link_to "Close account", "#" %>

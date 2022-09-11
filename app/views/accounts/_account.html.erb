@@ -1,12 +1,16 @@
 <div id="<%= dom_id account %>">
   <p>
+    <%= "Hello, #{account.user.first_name} #{account.user.last_name}" %>
+  </p>
+
+  <p>
     <strong>Balance:</strong>
     <%= account.balance %>
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= account.user_id %>
+    <strong>Account number:</strong>
+    <%= account.id %>
   </p>
 
 </div>
