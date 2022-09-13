@@ -1,0 +1,12 @@
+<h1>Deposit</h1>
+
+<%= form_for :deposit, url: user_account_transactions_deposit_path(current_user, current_user.account)  do |f| %>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.number_field :value, autofocus: true, step: :any %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Deposit" %>
+  </div>
+<% end %>

@@ -2,9 +2,11 @@
 
 <%= render @account %>
 
-<%= button_to "Deposit", "#" %>
+<%= button_to "Deposit", user_account_deposit_path(current_user, current_user.account), method: :get %>
 <%= button_to "Withdraw", "#" %>
 <%= button_to "Bank transfer", "#" %>
 <%= button_to "Bank statement", "#" %>
 
 <%= link_to "Close account", "#" %>
+<br>
+<%= button_to "logout", destroy_user_session_path, method: :delete %>

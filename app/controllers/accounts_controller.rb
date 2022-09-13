@@ -25,6 +25,10 @@ class AccountsController < ApplicationController
     end
   end
 
+  #GET /accounts/deposit
+  def deposit
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
