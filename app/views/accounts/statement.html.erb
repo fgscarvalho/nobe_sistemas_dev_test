@@ -1,0 +1,43 @@
+<h1>Bank statement</h1>
+<%= form_for :deposit  do |f| %>
+  <div class="row">
+    <div class="col">
+      <div class="field">
+        <%= f.label :start_date %><br />
+        <%= f.date_field :start_date, autofocus: true %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="field">
+          <%= f.label :end_date %><br />
+          <%= f.date_field :finish_date, autofocus: true %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<table class="table caption-top">
+  <caption>Your bank statement</caption>
+    <thead>
+    <tr>
+      <th>Transaction Id</th>
+      <th>Transfer Type<th>
+      <th>Value</th>
+      <th>Date</th>
+      <% debug(@transaction) %>
+    </tr>
+  </thead>
+  <tbody>
+
+  <% @transaction.each do |c| %>
+      <tr>
+        <td><%= c.id %></td>
+        <td><%= c.kind %></td>
+        <td><%= c.value %></td>
+        <td><%= c.created_at.strftime('%m/%d/%Y at %H:%M') %></td>
+      </tr>
+
+  <% end %>
+  </tbody>
+
+
+</table>

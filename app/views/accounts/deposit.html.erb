@@ -5,8 +5,5 @@
     <%= f.label :value %><br />
     <%= f.number_field :value, autofocus: true, step: :any %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Deposit" %>
-  </div>
+  <%= f.submit "Deposit", class: "btn btn-success" %>
 <% end %>

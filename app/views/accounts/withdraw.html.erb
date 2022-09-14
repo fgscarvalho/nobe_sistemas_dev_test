@@ -1,0 +1,14 @@
+<p style="color: red"><%= notice %></p>
+
+<h1>Withdraw</h1>
+
+<%= form_for :withdraw, url: user_account_transactions_withdraw_path(current_user, current_user.account)  do |f| %>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.number_field :value, autofocus: true, step: :any %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Withdraw" %>
+  </div>
+<% end %>

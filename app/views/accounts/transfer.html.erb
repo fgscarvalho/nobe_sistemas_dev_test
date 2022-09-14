@@ -1,0 +1,17 @@
+<h1>Bank transfer</h1>
+
+<%= form_for :transfer, url: user_account_transactions_transfer_path(current_user, current_user.account)  do |f| %>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.number_field :value, autofocus: true, step: :any %>
+  </div>
+
+  <div class="field">
+    <%= f.label :destination_account %><br />
+    <%= f.text_field :destination_account, autofocus: true%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Transfer now" %>
+  </div>
+<% end %>

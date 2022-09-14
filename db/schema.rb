@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_11_194835) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_102959) do
   create_table "accounts", force: :cascade do |t|
     t.decimal "balance", precision: 18, scale: 2, default: "0.0", null: false
     t.boolean "is_active", default: true, null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_11_194835) do
     t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "kind"
     t.index ["account_id"], name: "index_transactions_on_account_id"
   end
 

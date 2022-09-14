@@ -3,6 +3,5 @@
 <% else %>
   <h1> My Account</h1>
   <p>Find me in app/views/users/show.html.erb</p>
-  <%= button_to "logout", destroy_user_session_path, method: :delete %>
   <%= button_to "Bank Account", new_user_account_path(current_user), method: :get %>
 <% end %>
