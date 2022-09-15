@@ -33,7 +33,13 @@ class Transaction < ApplicationRecord
       value_with_tax += TAX_MAX_VALUE
     end
 
-    account.remove_money(value_with_tax)
-    destination_account.add_money(value)
+    if account.remove_money(value_with_tax) != nil
+      account.remove_money(value_with_tax)
+      destination_account.add_money(value)
+    else
+      return nil
+    end
+
+    value_with_tax
   end
 end

@@ -13,7 +13,7 @@ class AccountsController < ApplicationController
   # POST /accounts or /accounts.json
   def create
     @account = Account.new(user: current_user)
-
+    @account.new_account
     respond_to do |format|
       if @account.save
         format.html { redirect_to user_account_path(current_user, @account), notice: "Account was successfully created." }

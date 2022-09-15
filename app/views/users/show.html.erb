@@ -3,5 +3,5 @@
 <% else %>
   <h1> My Account</h1>
   <p>Enter in bank account to create your new account!</p>
-  <%= button_to "Bank Account", new_user_account_path(current_user), method: :get %>
+  <%= button_to "Bank Account", new_user_account_path(current_user), method: :get, class: "btn btn-success" %>
 <% end %>

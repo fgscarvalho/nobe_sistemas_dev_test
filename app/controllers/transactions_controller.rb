@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
 
   def create_withdraw
     respond_to do |format|
-      if current_user.account.enough_founds? params[:withdraw][:value]
+      if current_user.account.enough_funds? params[:withdraw][:value]
         @transaction = Transaction.new(value: params[:withdraw][:value].to_d, account: current_user.account, kind: :withdraw)
         @transaction.withdraw
             if @transaction.save
@@ -36,18 +36,25 @@ class TransactionsController < ApplicationController
   end
 
   def create_transfer
+    puts "#"*50
+    pp current_user.account
+    puts "#"*50
     respond_to do |format|
-      if current_user.account.enough_founds? params[:transfer][:value]
-        if current_user.account != @destination_account
+      if current_user.account.enough_funds? params[:transfer][:value]
+        if current_user.account != @destination_account[0]
           @transaction = Transaction.new(value: params[:transfer][:value].to_d, account: current_user.account, kind: :transfer)
-          @transaction.transfer(@destination_account)
-              if @transaction.save
-                format.html { redirect_to user_account_path(current_user, current_user.account), notice: "The transfer was successfully." }
-                format.json { render :show, status: :created, location: @transaction }
-              else
-                format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @transaction.errors, status: :unprocessable_entity }
-              end
+          if @transaction.transfer(@destination_account[0]) == nil
+            @transaction.transfer(@destination_account[0])
+            if @transaction.save
+              format.html { redirect_to user_account_path(current_user, current_user.account), notice: "The transfer was successfully." }
+              format.json { render :show, status: :created, location: @transaction }
+            else
+              format.html { render :new, status: :unprocessable_entity }
+              format.json { render json: @transaction.errors, status: :unprocessable_entity }
+            end
+          else
+            format.html { redirect_to user_account_withdraw_path(current_user, current_user.account.id), notice: "The balance is not enough." }
+          end
         else
           format.html { redirect_to user_account_withdraw_path(current_user, current_user.account.id), notice: "That is your Account." }
         end
@@ -60,6 +67,6 @@ class TransactionsController < ApplicationController
   private
 
   def set_destination
-    @destination_account = Account.find(params[:transfer][:destination_account])
+    @destination_account = Account.select{ |account| account.number_account == params[:transfer][:destination_account]}
   end
 end
