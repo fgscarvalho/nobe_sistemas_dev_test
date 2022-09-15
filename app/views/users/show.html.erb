@@ -2,6 +2,6 @@
   <% controller.redirect_to user_account_path(current_user, current_user.account) %>
 <% else %>
   <h1> My Account</h1>
-  <p>Find me in app/views/users/show.html.erb</p>
+  <p>Enter in bank account to create your new account!</p>
   <%= button_to "Bank Account", new_user_account_path(current_user), method: :get %>
 <% end %>

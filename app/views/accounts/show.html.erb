@@ -1,16 +1,26 @@
 <p style="color: green"><%= notice %></p>
 <% if current_user.account.is_active? %>
     <%= render @account %>
-
-    <%= button_to "Deposit", user_account_deposit_path(current_user, current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-">
+          <%= button_to "Deposit", user_account_deposit_path(current_user, current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
+        </div>
+        <div class="col-md-">
+          <%= button_to "Withdraw", user_account_withdraw_path(current_user, current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-">
+          <%= button_to "Bank transfer", user_account_transfer_path(current_user, current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
+        </div>
+        <div class="col-md-">
+          <%= button_to "Bank statement", user_account_statement_path(current_user,current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
     <br>
-    <%= button_to "Withdraw", user_account_withdraw_path(current_user, current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
-    <br>
-    <%= button_to "Bank transfer", user_account_transfer_path(current_user, current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
-    <br>
-    <%= button_to "Bank statement", user_account_statement_path(current_user,current_user.account), method: :get, class: "btn btn-primary btn-sm" %>
-    <br>
-    <%= button_to "Close account", user_account_close_path(current_user, current_user.account),  class: "btn btn-danger" %>
+    <%= button_to "Close account", user_account_close_path(current_user, current_user.account), data: { confirm: "Are you sure?" },  class: "btn btn-danger" %>
 <% else %>
     <h1>This account is closed</h1>
 <% end %>
