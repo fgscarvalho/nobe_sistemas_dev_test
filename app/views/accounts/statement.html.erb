@@ -1,34 +1,31 @@
+<p style="color: red"><%= notice %></p>
+
 <h1>Bank statement</h1>
-<%= form_for :deposit  do |f| %>
-  <div class="row">
-    <div class="col">
-      <div class="field">
-        <%= f.label :start_date %><br />
-        <%= f.date_field :start_date, autofocus: true %>
-      </div>
-    </div>
-    <div class="col">
-      <div class="field">
-          <%= f.label :end_date %><br />
-          <%= f.date_field :finish_date, autofocus: true %>
-      </div>
-    </div>
-  </div>
+
+<%= form_tag user_account_statement_path(current_user,current_user.account), method: :get do %>
+  <%= date_field_tag :start_date,
+      params[:start_date],
+      class: "form-control" %>
+  <%= date_field_tag :end_date,
+      params[:end_date],
+      class: "form-control" %>
+  <%= submit_tag "Search", class: "btn" %>
 <% end %>
+
 <table class="table caption-top">
   <caption>Your bank statement</caption>
     <thead>
     <tr>
       <th>Transaction Id</th>
-      <th>Transfer Type<th>
+      <th>Transfer Type</th>
       <th>Value</th>
       <th>Date</th>
-      <% debug(@transaction) %>
+      <% debug(@transactions) %>
     </tr>
   </thead>
   <tbody>
 
-  <% @transaction.each do |c| %>
+  <% @transactions.each do |c| %>
       <tr>
         <td><%= c.id %></td>
         <td><%= c.kind %></td>
@@ -38,6 +35,4 @@
 
   <% end %>
   </tbody>
-
-
 </table>

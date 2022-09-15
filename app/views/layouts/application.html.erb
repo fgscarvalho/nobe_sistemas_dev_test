@@ -34,7 +34,9 @@
             <span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li class="nav-item"><%= link_to "Edit", edit_user_registration_path, method: :get,class: "nav-link active" %></li>
+              <% if current_user %>
+                <li class="nav-item"><%= link_to "Edit", edit_user_path(current_user), method: :patch,class: "nav-link active" %></li>
+              <% end %>
               <li class="nav-item"><%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-outline-danger" %></li>
             </ul>
           </div>

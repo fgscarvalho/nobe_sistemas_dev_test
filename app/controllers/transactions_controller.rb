@@ -2,8 +2,6 @@ class TransactionsController < ApplicationController
   before_action :set_destination, only: :create_transfer
   before_action :authenticate_user!, only: [:create_transfer, :create_withdraw]
 
-  
-
   def create_deposit
       @transaction = Transaction.new(value: params[:deposit][:value].to_d, account: current_user.account, kind: :deposit)
       @transaction.deposit

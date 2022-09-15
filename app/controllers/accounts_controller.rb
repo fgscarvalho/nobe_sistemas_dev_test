@@ -36,11 +36,21 @@ class AccountsController < ApplicationController
   end
 
   def statement
-    @transaction = @account.transactions
+    @transactions = []
 
-    if params[:start_date].present? and params[:start_date].present?
-        @transaction  = @transaction.select{ |transactions| @account.transactions.created_at.between? start_date.to_time, end_date.to_time }
+    if params[:start_date].present? or params[:end_date].present?
+      start_date = params[:start_date].to_time ||  Time.new(2000, 1, 1)
+      end_date = params[:end_date].to_time ||  Time.now
+      if start_date >= end_date
+        respond_to do |format|
+          format.html { redirect_to user_account_statement_path(current_user,current_user.account), notice: "End date can't be lower or equal than start date!." }
+        end
+      else
+        @transactions  = @account.transactions.select{ |transaction| transaction.created_at.between? start_date, end_date }
+      end
     end
+
+    #redirect_back(fallback_location: root_path)
   end
 
   def close_account

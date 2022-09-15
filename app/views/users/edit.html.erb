@@ -1,0 +1,21 @@
+<%= form_for(current_user, url: user_path(current_user), html: { method: :patch }) do |f| %>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autocomplete: "first_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name%><br />
+    <%= f.text_field :last_name, autocomplete: "last_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cpf%><br />
+    <%= f.text_field :cpf, autocomplete: "cpf" %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Update", class: "btn btn-primary btn-sm" %>
+  </div>
+<% end %>

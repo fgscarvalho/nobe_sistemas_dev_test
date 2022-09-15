@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :edit, :update] do
     resources :accounts, only: [:show, :new, :create] do
       get '/withdraw', to: 'accounts#withdraw'
       get '/deposit', to: 'accounts#deposit'
