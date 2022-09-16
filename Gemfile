@@ -49,6 +49,7 @@ gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 5.2'
 
 gem 'jquery-rails'
+gem "faker"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -76,6 +77,5 @@ group :test do
   gem "webdrivers"
   gem "rspec-rails"
   gem "factory_bot_rails"
-  gem "faker"
   gem "shoulda-matchers"
 end
